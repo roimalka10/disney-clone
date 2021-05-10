@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
@@ -5,6 +6,7 @@ import { auth, provider } from "../firebase";
 import {
   selectUserName,
   selectUserPhoto,
+  setSignOutState,
   setUserLoginDetails,
 } from "../features/user/userSlice";
 
@@ -14,15 +16,34 @@ const Header = (props) => {
   const userName = useSelector(selectUserName);
   const userPhoto = useSelector(selectUserPhoto);
 
+  useEffect(() => {
+    auth.onAuthStateChanged(async (user) => {
+      if (user) {
+        setUser(user);
+        history.push("/home");
+      }
+    });
+  }, [userName]);
+
   const handleAuth = () => {
-    auth
-      .signInWithPopup(provider)
-      .then((result) => {
-        setUser(result.user);
-      })
-      .catch((error) => {
-        alert(error.message);
-      });
+    if (!userName) {
+      auth
+        .signInWithPopup(provider)
+        .then((result) => {
+          setUser(result.user);
+        })
+        .catch((error) => {
+          alert(error.message);
+        });
+    } else if (userName) {
+      auth
+        .signOut()
+        .then(() => {
+          dispatch(setSignOutState());
+          history.push("/");
+        })
+        .catch((err) => alert(err.message));
+    }
   };
 
   const setUser = (user) => {
@@ -71,7 +92,7 @@ const Header = (props) => {
               <span>SERIES</span>
             </a>
           </NavMenu>
-          <userImg src={userPhoto} alt={userName} />
+          <LogOut onClick={handleAuth}>Log out</LogOut>
         </>
       )}
     </Nav>
@@ -173,6 +194,22 @@ const NavMenu = styled.div`
 `;
 
 const Login = styled.a`
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 8px 16px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  border: 1px solid #f9f9f9;
+  border-radius: 4px;
+  transition: all 0.3s ease 0s;
+
+  &:hover {
+    background-color: #f9f9f9;
+    color: #000;
+    border-color: transparent;
+  }
+`;
+
+const LogOut = styled.a`
   background-color: rgba(0, 0, 0, 0.6);
   padding: 8px 16px;
   text-transform: uppercase;
