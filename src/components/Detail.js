@@ -115,8 +115,9 @@ const Controls = styled.div`
 
 const Player = styled.button`
   font-size: 15px;
+  font-weight: 700;
   margin: 0px 22px 0px 0px;
-  padding: 0px 24px;
+  width: 125px;
   height: 56px;
   border-radius: 4px;
   cursor: pointer;
