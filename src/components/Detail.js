@@ -65,7 +65,7 @@ const Container = styled.div`
   overflow-x: hidden;
   display: block;
   top: 72px;
-  padding: 0px 72px;
+  padding: 0 calc(3.5vw + 5px);
 `;
 
 const Background = styled.div`
