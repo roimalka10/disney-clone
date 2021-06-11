@@ -65,22 +65,30 @@ const Container = styled.div`
   overflow-x: hidden;
   display: block;
   top: 72px;
-  padding: 0 calc(3.5vw + 5px);
 `;
 
 const Background = styled.div`
-  left: 0px;
+  width: 100%;
+  height: 100%;
+  position: relative;
   opacity: 0.8;
-  position: fixed;
-  right: 0px;
-  top: 0px;
   z-index: -1;
+  background-repeat: no-repeat;
+  background-position: center;
+  @media screen and (min-width: 768px) {
+    left: 0px;
+    opacity: 0.8;
+    position: fixed;
+    right: 0px;
+    top: 0px;
+    z-index: -1;
+  }
+
   img {
-    width: 100vw;
-    height: 100vh;
-    @media (max-width: 768px) {
-      width: initial;
-    }
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
   }
 `;
 
@@ -90,14 +98,18 @@ const ImageTitle = styled.div`
   -webkit-box-pack: start;
   justify-content: flex-start;
   margin: 0px auto;
-  height: 30vw;
+  padding: 0 calc(3.5vw + 5px);
   min-height: 170px;
-  padding-bottom: 24px;
-  width: 100%;
+  margin-bottom: 20px;
+
+  @media screen and (min-width: 768px) {
+    margin-top: 80px;
+  }
   img {
-    max-width: 600px;
-    min-width: 200px;
-    width: 35vw;
+    width: 250px;
+    @media screen and (min-width: 768px) {
+      width: 400px;
+    }
   }
 `;
 
@@ -106,10 +118,11 @@ const ContentMeta = styled.div`
 `;
 
 const Controls = styled.div`
+  padding: 0 calc(3.5vw + 5px);
   align-items: center;
   display: flex;
   flex-flow: row nowrap;
-  margin: 24px 0px;
+  margin-bottom: 24px;
   min-height: 56px;
 `;
 
@@ -201,6 +214,7 @@ const GroupWatch = styled.div`
 `;
 
 const SubTitle = styled.div`
+  padding: 0 calc(3.5vw + 5px);
   color: rgb(249, 249, 249);
   font-size: 15px;
   min-height: 20px;
@@ -211,9 +225,9 @@ const SubTitle = styled.div`
 `;
 
 const Description = styled.div`
+  padding: 0 calc(3.5vw + 5px);
   line-height: 1.4;
   font-size: 20px;
-  padding: 16px 0px;
   text-align: initial;
   color: rgb(249, 249, 249);
   @media (max-width: 768px) {
