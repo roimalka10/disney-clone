@@ -103,11 +103,8 @@ const Header = (props) => {
 
 const Nav = styled.nav`
   position: fixed;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 70px;
+  width: 100%;
+  height: 72px;
   background-color: #090b13;
   display: flex;
   justify-content: space-between;
@@ -133,6 +130,7 @@ const Logo = styled.a`
 
 const NavMenu = styled.div`
   align-items: center;
+  cursor: pointer;
   display: flex;
   flex-flow: nowrap;
   height: 100%;
@@ -191,8 +189,7 @@ const NavMenu = styled.div`
       }
     }
   }
-
-  @media (max-width: 768px) {
+  @media (max-width: 1025px) {
     display: none;
   }
 `;
@@ -200,6 +197,7 @@ const NavMenu = styled.div`
 const Login = styled.a`
   background-color: rgba(0, 0, 0, 0.6);
   padding: 8px 16px;
+  cursor: pointer;
   text-transform: uppercase;
   letter-spacing: 1.5px;
   border: 1px solid #f9f9f9;
@@ -216,6 +214,7 @@ const Login = styled.a`
 const LogOut = styled.a`
   background-color: rgba(0, 0, 0, 0.6);
   padding: 8px 16px;
+  cursor: pointer;
   text-transform: uppercase;
   letter-spacing: 1.5px;
   border: 1px solid #f9f9f9;
@@ -227,10 +226,6 @@ const LogOut = styled.a`
     color: #000;
     border-color: transparent;
   }
-`;
-
-const userImg = styled.img`
-  height: 100%;
 `;
 
 export default Header;
